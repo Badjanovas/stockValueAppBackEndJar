@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://stockvalueapp.cz2ieoksg930.eu-west-2.rds.amazonaws.com:5432/postgres
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: ${postgresPassword}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 8080

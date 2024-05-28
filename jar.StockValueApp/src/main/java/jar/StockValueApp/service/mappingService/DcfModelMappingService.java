@@ -1,0 +1,77 @@
+package jar.StockValueApp.service.mappingService;
+
+
+import jar.StockValueApp.dto.DcfModelRequestDTO;
+import jar.StockValueApp.dto.DcfModelResponseDTO;
+import jar.StockValueApp.model.DcfModel;
+import jar.StockValueApp.service.calculationService.DcfModelCalculationService;
+import jar.StockValueApp.service.calculationService.MathService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class DcfModelMappingService {
+
+    private final DcfModelCalculationService dcfCalculationService;
+    private final MathService mathService;
+
+    public DcfModel mapToEntity(final DcfModelRequestDTO requestDTO) {
+        double wacc = mathService.convertToPercentages(requestDTO.getWacc());
+        double growthRate = mathService.convertToPercentages(requestDTO.getGrowthRate());
+
+        double sumOfDiscountedFCF = dcfCalculationService.calculateSumOfDiscountedFCF(requestDTO.getSumOfFCF(), wacc, growthRate);
+        double equityValue = sumOfDiscountedFCF + requestDTO.getCashAndCashEquivalents() - requestDTO.getTotalDebt();
+
+        return DcfModel.builder()
+                .companyName(requestDTO.getCompanyName())
+                .ticker(requestDTO.getCompanyTicker())
+                .sumOfFCF(requestDTO.getSumOfFCF())
+                .cashAndCashEquivalents(requestDTO.getCashAndCashEquivalents())
+                .totalDebt(requestDTO.getTotalDebt())
+                .equityValue(mathService.roundToTwoDecimal(equityValue))
+                .sharesOutstanding(requestDTO.getSharesOutstanding())
+                .intrinsicValue(dcfCalculationService.calculateDcfValuation(equityValue, requestDTO.getSharesOutstanding()))
+                .build();
+    }
+
+    public List<DcfModelResponseDTO> mapToResponse(final List<DcfModel> dcfValuations) {
+        final List<DcfModelResponseDTO> mappedDcfValuations = new ArrayList<>();
+        for (DcfModel dcfValuation : dcfValuations) {
+            DcfModelResponseDTO dto = DcfModelResponseDTO.builder()
+                    .id(dcfValuation.getId())
+                    .companyName(dcfValuation.getCompanyName())
+                    .companyTicker(dcfValuation.getTicker())
+                    .sumOfFCF(dcfValuation.getSumOfFCF())
+                    .cashAndCashEquivalents(dcfValuation.getCashAndCashEquivalents())
+                    .totalDebt(dcfValuation.getTotalDebt())
+                    .equityValue(dcfValuation.getEquityValue())
+                    .sharesOutstanding(dcfValuation.getSharesOutstanding())
+                    .intrinsicValue(dcfValuation.getIntrinsicValue())
+                    .creationDate(dcfValuation.getCreationDate())
+                    .build();
+
+            mappedDcfValuations.add(dto);
+        }
+        return mappedDcfValuations;
+    }
+
+    public DcfModelResponseDTO mapToResponse(final DcfModel dcfValuation){
+        return DcfModelResponseDTO.builder()
+                .id(dcfValuation.getId())
+                .companyName(dcfValuation.getCompanyName())
+                .companyTicker(dcfValuation.getTicker())
+                .sumOfFCF(dcfValuation.getSumOfFCF())
+                .cashAndCashEquivalents(dcfValuation.getCashAndCashEquivalents())
+                .totalDebt(dcfValuation.getTotalDebt())
+                .equityValue(dcfValuation.getEquityValue())
+                .sharesOutstanding(dcfValuation.getSharesOutstanding())
+                .intrinsicValue(dcfValuation.getIntrinsicValue())
+                .creationDate(dcfValuation.getCreationDate())
+                .build();
+    }
+
+}
