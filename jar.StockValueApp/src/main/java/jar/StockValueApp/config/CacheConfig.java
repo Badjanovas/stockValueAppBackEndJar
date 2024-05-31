@@ -17,7 +17,7 @@ public class CacheConfig {
                 "dcfValuationsCache",
                 "dcfValuationsByTickerCache",
                 "dcfValuationsByCompanyNameCache",
-                "dcfValuationByDateRangeCache",
+                "dcfValuationByDateCache",
                 "dividendDiscountValuationsCache",
                 "dividendDiscountValuationsByTickerCache",
                 "dividendDiscountValuationsByCompanyNameCache",

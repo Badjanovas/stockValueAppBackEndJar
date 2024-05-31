@@ -44,8 +44,8 @@ public class GrahamsModelService {
     }
 
     // The key expression #ticker.concat('-').concat(#usersId.toString()) constructs a unique identifier for caching by concatenating the stock ticker symbol (ticker)
-// and user ID (usersId), separated by a hyphen. This ensures that cached data is specific to both the stock and the user, preventing cache collisions between
-// different stocks or users.
+    // and user ID (usersId), separated by a hyphen. This ensures that cached data is specific to both the stock and the user, preventing cache collisions between
+    // different stocks or users.
     @Cacheable(value = "grahamsValuationsByTickerCache", key = "#ticker.concat('-').concat(#userId.toString())")
     public List<GrahamsResponseDTO> getGrahamsValuationsByTicker(final String ticker, final Long userId)
             throws NoGrahamsModelFoundException, NotValidIdException, NoUsersFoundException {

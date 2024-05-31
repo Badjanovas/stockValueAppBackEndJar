@@ -24,7 +24,8 @@ public class DcfModelMappingService {
         double growthRate = mathService.convertToPercentages(requestDTO.getGrowthRate());
 
         double sumOfDiscountedFCF = dcfCalculationService.calculateSumOfDiscountedFCF(requestDTO.getSumOfFCF(), wacc, growthRate);
-        double equityValue = sumOfDiscountedFCF + requestDTO.getCashAndCashEquivalents() - requestDTO.getTotalDebt();
+        double equityValue = dcfCalculationService.calculateEquityValue(sumOfDiscountedFCF, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt());
+        double intrinsicValue = dcfCalculationService.calculateDcfPerShareValue(requestDTO.getSumOfFCF(), wacc, growthRate, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt(), requestDTO.getSharesOutstanding());
 
         return DcfModel.builder()
                 .companyName(requestDTO.getCompanyName())
@@ -34,7 +35,7 @@ public class DcfModelMappingService {
                 .totalDebt(requestDTO.getTotalDebt())
                 .equityValue(mathService.roundToTwoDecimal(equityValue))
                 .sharesOutstanding(requestDTO.getSharesOutstanding())
-                .intrinsicValue(dcfCalculationService.calculateDcfValuation(equityValue, requestDTO.getSharesOutstanding()))
+                .intrinsicValue(intrinsicValue)
                 .build();
     }
 
