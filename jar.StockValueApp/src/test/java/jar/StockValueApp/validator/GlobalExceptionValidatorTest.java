@@ -18,7 +18,7 @@ class GlobalExceptionValidatorTest {
     /* Tests for validateId */
     @Test
     void validateId_IdNull_ThrowsException(){
-        NotValidIdException exception = assertThrows(
+        final var exception = assertThrows(
                 NotValidIdException.class,
                 () -> validator.validateId(null)
         );
@@ -28,7 +28,7 @@ class GlobalExceptionValidatorTest {
 
     @Test
     void validateId_IdNegativeValue_ThrowsException(){
-        NotValidIdException exception = assertThrows(
+        final var exception = assertThrows(
                 NotValidIdException.class,
                 () -> validator.validateId(-1L)
         );

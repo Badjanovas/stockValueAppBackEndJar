@@ -20,8 +20,8 @@ public class UserMappingService {
                 .build();
     }
 
-    public List<UserResponseDTO> mapToResponse(List<User> allUsers) {
-        List<UserResponseDTO> mappedUsers = new ArrayList<>();
+    public ArrayList<Object> mapToResponse(List<User> allUsers) {
+        final var mappedUsers = new ArrayList<>();
         for (User user : allUsers) {
             UserResponseDTO dto = UserResponseDTO.builder()
                     .id(user.getId())

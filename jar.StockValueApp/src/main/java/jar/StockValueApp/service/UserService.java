@@ -2,7 +2,6 @@ package jar.StockValueApp.service;
 
 
 import jar.StockValueApp.dto.UserRequestDTO;
-import jar.StockValueApp.dto.UserResponseDTO;
 import jar.StockValueApp.exception.*;
 import jar.StockValueApp.model.AuthenticationRequest;
 import jar.StockValueApp.model.AuthenticationResponse;
@@ -20,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,53 +32,45 @@ public class UserService {
     private final UserMappingService userMappingService;
     private final UserRequestValidator userRequestValidator;
     private final GlobalExceptionValidator globalExceptionValidator;
-    private final EmailSendingService emailSendingService;
+    private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final AuthenticationRequestValidator authenticationRequestValidator;
 
-    public List<User> getAllUsers() throws NoUsersFoundException {
+    public List<User> getAllUsers() {
         log.info("Looking for users in DB.");
-        final List<User> users = userRepository.findAll();
+        final var users = userRepository.findAll();
         userRequestValidator.validateUserList(users);
         log.info(users.size() + " users were found in DB.");
         return users;
     }
 
-    public AuthenticationResponse register(final UserRequestDTO userRequestDTO)
-            throws
-            MandatoryFieldsMissingException,
-            UserAlreadyExistException,
-            IncorrectEmailFormatException,
-            EmailAlreadyExistException,
-            NotValidIdException
-    {
+    public AuthenticationResponse register(final UserRequestDTO userRequestDTO) {
         userRequestValidator.validateUserName(userRequestDTO);
         userRequestValidator.validateUserRequest(userRequestDTO);
         userRequestValidator.validateEmailFormat(userRequestDTO.getEmail());
         userRequestValidator.validateEmail(userRequestDTO);
 
-        final User user = userMappingService.mapToEntity(userRequestDTO);
+        final var user = userMappingService.mapToEntity(userRequestDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        final var jwtToken = jwtService.generateToken(user);
         globalExceptionValidator.validateId(user.getId());
-        emailSendingService.sendEmail(userRequestDTO.getEmail(), userRequestDTO);
+        emailService.sendEmail(userRequestDTO.getEmail(), userRequestDTO);
         log.info("New user " + user.getUsername() + " was created and saved successfully.");
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request)
-            throws MandatoryFieldsMissingException, NoUsersFoundException {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationRequestValidator.validateAuthenticationRequest(request);
-        var user = userRepository.findByUserName(
+        final var user = userRepository.findByUserName(
                 request.getUserName()).orElseThrow(() -> new NoUsersFoundException("Incorrect username or password.")
         );
 
-        if(!passwordMatches(request.getPassword(), user.getPassword())){
+        if (!passwordMatches(request.getPassword(), user.getPassword())) {
             throw new NoUsersFoundException("Incorrect username or password.");
         }
         authenticationManager.authenticate(
@@ -87,14 +79,14 @@ public class UserService {
                         request.getPassword()
                 )
         );
-        var jwtToken = jwtService.generateToken(user);
+        final var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .user(user)
                 .build();
     }
 
-    public List<UserResponseDTO> deleteUserById(final Long id) throws NotValidIdException, NoUsersFoundException {
+    public ArrayList<Object> deleteUserById(final Long id) {
         globalExceptionValidator.validateId(id);
         userRequestValidator.validateUserById(id);
         userRepository.deleteById(id);
@@ -103,16 +95,9 @@ public class UserService {
         return userMappingService.mapToResponse(userRepository.findAll());
     }
 
-    public User updateUserByUserName(final String userName, final UserRequestDTO user)
-            throws
-            NoUsersFoundException,
-            UserAlreadyExistException,
-            EmailAlreadyExistException,
-            IncorrectEmailFormatException,
-            MandatoryFieldsMissingException
-    {
+    public User updateUserByUserName(final String userName, final UserRequestDTO user) {
         userRequestValidator.validateUserRequest(user);
-        User userToUpdate = userRepository.findByUserName(userName)
+        final var userToUpdate = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new NoUsersFoundException("User with username: " + userName + " was not found."));
 
         userRequestValidator.validateUserName(user);
@@ -129,7 +114,7 @@ public class UserService {
     }
 
     private boolean updateUserIfChanged(final UserRequestDTO user, final User userToUpdate) {
-        boolean isUpdated = false;
+        var isUpdated = false;
 
         if (!Objects.equals(userToUpdate.getUsername(), user.getUserName())) {
             userToUpdate.setUserName(user.getUserName());
@@ -147,7 +132,7 @@ public class UserService {
     }
 
     public boolean passwordMatches(String plainTextPassword, String hashedPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        final var encoder = new BCryptPasswordEncoder();
         return encoder.matches(plainTextPassword, hashedPassword);
     }
 

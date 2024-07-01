@@ -20,12 +20,12 @@ public class DcfModelMappingService {
     private final MathService mathService;
 
     public DcfModel mapToEntity(final DcfModelRequestDTO requestDTO) {
-        double wacc = mathService.convertToPercentages(requestDTO.getWacc());
-        double growthRate = mathService.convertToPercentages(requestDTO.getGrowthRate());
+        var wacc = mathService.convertToPercentages(requestDTO.getWacc());
+        var growthRate = mathService.convertToPercentages(requestDTO.getGrowthRate());
 
-        double sumOfDiscountedFCF = dcfCalculationService.calculateSumOfDiscountedFCF(requestDTO.getSumOfFCF(), wacc, growthRate);
-        double equityValue = dcfCalculationService.calculateEquityValue(sumOfDiscountedFCF, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt());
-        double intrinsicValue = dcfCalculationService.calculateDcfPerShareValue(requestDTO.getSumOfFCF(), wacc, growthRate, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt(), requestDTO.getSharesOutstanding());
+        var sumOfDiscountedFCF = dcfCalculationService.calculateSumOfDiscountedFCF(requestDTO.getSumOfFCF(), wacc, growthRate);
+        var equityValue = dcfCalculationService.calculateEquityValue(sumOfDiscountedFCF, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt());
+        var intrinsicValue = dcfCalculationService.calculateDcfPerShareValue(requestDTO.getSumOfFCF(), wacc, growthRate, requestDTO.getCashAndCashEquivalents(), requestDTO.getTotalDebt(), requestDTO.getSharesOutstanding());
 
         return DcfModel.builder()
                 .companyName(requestDTO.getCompanyName())
@@ -39,8 +39,8 @@ public class DcfModelMappingService {
                 .build();
     }
 
-    public List<DcfModelResponseDTO> mapToResponse(final List<DcfModel> dcfValuations) {
-        final List<DcfModelResponseDTO> mappedDcfValuations = new ArrayList<>();
+    public ArrayList<Object> mapToResponse(final List<DcfModel> dcfValuations) {
+        final var mappedDcfValuations = new ArrayList<>();
         for (DcfModel dcfValuation : dcfValuations) {
             DcfModelResponseDTO dto = DcfModelResponseDTO.builder()
                     .id(dcfValuation.getId())

@@ -27,21 +27,19 @@ public class DividendDiscountController {
     private final DividendDiscountService dividendDiscountService;
 
     @GetMapping("/")
-    public ResponseEntity<?> findAllDividendDiscountValuations() throws NoDividendDiscountModelFoundException {
+    public ResponseEntity<?> findAllDividendDiscountValuations() {
         return ResponseEntity.status(HttpStatus.OK).body(dividendDiscountService.getAllDividendDiscountValuations());
     }
 
     @GetMapping("/ticker/{ticker}/{userId}")
-    public ResponseEntity<?> findByTicker(@PathVariable final String ticker, @PathVariable final Long userId)
-            throws NoDividendDiscountModelFoundException, NotValidIdException, NoUsersFoundException {
+    public ResponseEntity<?> findByTicker(@PathVariable final String ticker, @PathVariable final Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 dividendDiscountService.getDividendDiscountValuationsByTicker(ticker, userId)
         );
     }
 
     @GetMapping("/companyName/{companyName}/{userId}")
-    public ResponseEntity<?> findByCompanyName(@PathVariable final String companyName, @PathVariable final Long userId)
-            throws NoDividendDiscountModelFoundException, NotValidIdException, NoUsersFoundException {
+    public ResponseEntity<?> findByCompanyName(@PathVariable final String companyName, @PathVariable final Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 dividendDiscountService.getDividendDiscountValuationsByCompanyName(companyName, userId)
         );
@@ -52,7 +50,7 @@ public class DividendDiscountController {
             @PathVariable("startDate") final LocalDate startDate,
             @PathVariable final LocalDate endDate,
             @PathVariable final Long userId
-    ) throws NoDividendDiscountModelFoundException, NotValidIdException, NoUsersFoundException {
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 dividendDiscountService.getDividendDiscountValuationsByDate(startDate, endDate, userId)
         );
@@ -62,11 +60,7 @@ public class DividendDiscountController {
     public ResponseEntity<?> addDividendDiscountValuation(
             @RequestBody final DividendDiscountRequestDTO dividendDiscountRequestDTO,
             @PathVariable final Long userId
-    ) throws
-            MandatoryFieldsMissingException,
-            NotValidIdException,
-            NoUsersFoundException,
-            IncorrectCompaniesExpectedGrowthException {
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 dividendDiscountService.addDividendDiscountValuation(dividendDiscountRequestDTO, userId)
         );
@@ -74,12 +68,10 @@ public class DividendDiscountController {
 
     @DeleteMapping("/{valuationId}/{userId}")
     public ResponseEntity<?> deleteDividendDiscountById(
-            @PathVariable final  Long valuationId,
+            @PathVariable final Long valuationId,
             @PathVariable final Long userId
-    ) throws NoDividendDiscountModelFoundException, NotValidIdException, ValuationDoestExistForSelectedUserException {
-        dividendDiscountService.deleteDividendDiscountValuationById(valuationId, userId);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Dividend discount valuation  with id number " + valuationId + " was deleted from DB successfully.");
+    ) {
+        var response = dividendDiscountService.deleteDividendDiscountValuationById(valuationId, userId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

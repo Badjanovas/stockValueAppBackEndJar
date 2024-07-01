@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -23,47 +22,41 @@ public class DcfRequestValidator {
 
     private final DcfModelRepository dcfModelRepository;
 
-    public void validateDcfModelRequest(final DcfModelRequestDTO dcfModelRequestDTO) throws MandatoryFieldsMissingException {
+    public void validateDcfModelRequest(final DcfModelRequestDTO dcfModelRequestDTO) {
         if (dcfModelRequestDTO == null) {
-            log.error("Request was empty.");
-            throw new MandatoryFieldsMissingException("Request was empty.");
-        } else if (dcfModelRequestDTO.getCompanyName() == null) {
-            log.error("Mandatory company name field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory company name field is missing.");
-        } else if (dcfModelRequestDTO.getCompanyName().isBlank()) {
-            log.error("Mandatory company name field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory company name field is empty.");
-        } else if (dcfModelRequestDTO.getCompanyTicker() == null) {
-            log.error("Mandatory company ticker field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory company ticker field is missing.");
-        } else if (dcfModelRequestDTO.getCompanyTicker().isBlank()) {
-            log.error("Mandatory company ticker field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory company ticker field is empty.");
-        } else if (dcfModelRequestDTO.getSumOfFCF() == null) {
-            log.error("Mandatory sumOfFCF field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory sumOfFCF field is missing.");
-        } else if (dcfModelRequestDTO.getCashAndCashEquivalents() == null) {
-            log.error("Mandatory cashAndCashEquivalents field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory cashAndCashEquivalents field is missing.");
-        } else if (dcfModelRequestDTO.getTotalDebt() == null) {
-            log.error("Mandatory totalDebt field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory totalDebt field is missing.");
-        } else if (dcfModelRequestDTO.getSharesOutstanding() == null) {
-            log.error("Mandatory sharesOutstanding field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory sharesOutstanding field is missing.");
+            logAndThrow("Request was empty.");
+        }
+
+        checkMandatoryField(dcfModelRequestDTO.getCompanyName(), "company name");
+        checkMandatoryField(dcfModelRequestDTO.getCompanyTicker(), "company ticker");
+        checkMandatoryField(dcfModelRequestDTO.getSumOfFCF(), "sumOfFCF");
+        checkMandatoryField(dcfModelRequestDTO.getCashAndCashEquivalents(), "cashAndCashEquivalents");
+        checkMandatoryField(dcfModelRequestDTO.getTotalDebt(), "totalDebt");
+        checkMandatoryField(dcfModelRequestDTO.getSharesOutstanding(), "sharesOutstanding");
+    }
+
+    private void checkMandatoryField(Object field, String fieldName) {
+        if (field == null) {
+            logAndThrow("Mandatory " + fieldName + " field is missing.");
+        } else if (field instanceof String && ((String) field).isBlank()) {
+            logAndThrow("Mandatory " + fieldName + " field is empty.");
         }
     }
 
-    public void validateDcfModelList(List<DcfModel> dcfValuations) throws NoDcfValuationsFoundException {
-        if (dcfValuations.isEmpty()){
+    private void logAndThrow(String message) {
+        log.error(message);
+        throw new MandatoryFieldsMissingException(message);
+    }
+
+    public void validateDcfModelList(List<DcfModel> dcfValuations) {
+        if (dcfValuations.isEmpty()) {
             log.error("No discounted cash flow valuations found.");
             throw new NoDcfValuationsFoundException("No discounted cash flow valuations found.");
         }
     }
 
-    public void validateDcfModelList(List<DcfModel> dcfValuations, String tickerOrName)
-            throws NoDcfValuationsFoundException {
-        if (dcfValuations.isEmpty()){
+    public void validateDcfModelList(List<DcfModel> dcfValuations, String tickerOrName) {
+        if (dcfValuations.isEmpty()) {
             log.error("No discounted cash flow valuations found for: " + tickerOrName + ".");
             throw new NoDcfValuationsFoundException("No discounted cash flow valuations found for: " + tickerOrName + ".");
         }
@@ -73,28 +66,25 @@ public class DcfRequestValidator {
             final List<DcfModel> valuationList,
             final LocalDate startDate,
             final LocalDate endDate
-    )
-            throws NoGrahamsModelFoundException {
-        if (valuationList.isEmpty()){
+    ) {
+        if (valuationList.isEmpty()) {
             log.error("There are no valuations made between " + startDate + " " + endDate);
             throw new NoGrahamsModelFoundException("There are no valuations made between " + startDate + " " + endDate);
         }
     }
 
-    public void validateDcfModelById(final Long id) throws NoDcfValuationsFoundException {
-        if (!dcfModelRepository.existsById(id)){
+    public void validateDcfModelById(final Long id) {
+        if (!dcfModelRepository.existsById(id)) {
             log.error("Discounted cash flow valuation with id number " + id + " not found.");
             throw new NoDcfValuationsFoundException("Discounted cash flow valuation with id number " + id + " not found.");
         }
     }
 
-    public void validateDcfModelForUser(final Long valuationId, final Long userId)
-            throws ValuationDoestExistForSelectedUserException {
-        Optional<DcfModel> valuation = dcfModelRepository.findById(valuationId);
-        if (valuation.isEmpty() || !valuation.get().getUser().getId().equals(userId)){
+    public void validateDcfModelForUser(final Long valuationId, final Long userId) {
+        final var valuation = dcfModelRepository.findById(valuationId);
+        if (valuation.isEmpty() || !valuation.get().getUser().getId().equals(userId)) {
             log.error("Valuation does not exist for this user");
             throw new ValuationDoestExistForSelectedUserException("Valuation does not exist for this user");
         }
     }
-
 }

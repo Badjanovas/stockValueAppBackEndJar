@@ -17,11 +17,11 @@ class DcfModelCalculationServiceTest {
 
     @Test
     void validateCalculationOfSumOfDiscountedFCF_Returns_21000(){
-        double sumOfFCF = 5000.0;
-        double wacc = 0.1;
-        double growthRate = 0.05;
+        final var sumOfFCF = 5000.0;
+        final var wacc = 0.1;
+        final var growthRate = 0.05;
 
-        double result  = service.calculateSumOfDiscountedFCF(sumOfFCF,wacc,growthRate);
+        final var result  = service.calculateSumOfDiscountedFCF(sumOfFCF,wacc,growthRate);
         assertEquals(21000.0, result);
     }
 

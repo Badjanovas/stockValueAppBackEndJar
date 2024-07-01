@@ -34,7 +34,7 @@ class UserRequestValidatorTest {
     /* Tests for validateUserRequest */
     @Test
     void validateUserRequest_NullRequest_ThrowsException() {
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(null)
         );
@@ -43,8 +43,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_NullUserName_ThrowsException() {
-        var requestDTO = new UserRequestDTO(null, "Password", "email.gmail.com");
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO(null, "Password", "email.gmail.com");
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -54,8 +54,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_IsBlankUserName_ThrowsException() {
-        var requestDTO = new UserRequestDTO("", "Password", "email.gmail.com");
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO("", "Password", "email.gmail.com");
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -65,8 +65,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_NullPassword_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Username", null, "email.gmail.com");
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO("Username", null, "email.gmail.com");
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -76,8 +76,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_IsBlankPassword_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Username", "", "email.gmail.com");
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO("Username", "", "email.gmail.com");
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -87,8 +87,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_NullEmail_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Username", "Password", null);
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO("Username", "Password", null);
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -98,8 +98,8 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserRequest_IsBlankEmail_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Username", "Password", "");
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var requestDTO = new UserRequestDTO("Username", "Password", "");
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateUserRequest(requestDTO)
         );
@@ -121,7 +121,7 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserList_PopulatedList_doesNotThrowException() {
-        List<User> users = new ArrayList<>();
+        final List<User> users = new ArrayList<>();
         users.add(new User("User1", "Password", "newEmail@gmail.com"));
         users.add(new User("Usuer2", "Password2", "fakeemail@gmail.com"));
 
@@ -131,10 +131,10 @@ class UserRequestValidatorTest {
     /* Tests for validateUsersById */
     @Test
     void validateUserById_UsersNotFound_ThrowsException() {
-        final Long userId = 1L;
+        final var userId = 1L;
         when(userRepository.existsById(userId)).thenReturn(false);
 
-        NoUsersFoundException exception = assertThrows(
+        final var exception = assertThrows(
                 NoUsersFoundException.class,
                 () -> validator.validateUserById(userId)
         );
@@ -144,7 +144,7 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserById_userExists_doesNotThrowException() {
-        final Long userId = 1L;
+        final var userId = 1L;
         when(userRepository.existsById(userId)).thenReturn(true);
 
         assertDoesNotThrow(() -> validator.validateUserById(userId));
@@ -153,11 +153,11 @@ class UserRequestValidatorTest {
     /* Tests for validateUserName */
     @Test
     void validateUserName_userExists_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
+        final var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
         when(userRepository.findByUserName(requestDTO.getUserName()))
                 .thenReturn(Optional.of(new User("Andrius", "p", "email")));
 
-        UserAlreadyExistException exception = assertThrows(
+        final var exception = assertThrows(
                 UserAlreadyExistException.class,
                 () -> validator.validateUserName(requestDTO)
         );
@@ -168,7 +168,7 @@ class UserRequestValidatorTest {
 
     @Test
     void validateUserByUserName_UserDoesNotExist_doesNotThrowException() {
-        UserRequestDTO userRequestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
+        final var userRequestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
         when(userRepository.findByUserName(userRequestDTO.getUserName())).thenReturn(Optional.empty());
 
         assertDoesNotThrow(() -> validator.validateUserName(userRequestDTO));
@@ -191,7 +191,7 @@ class UserRequestValidatorTest {
             "newEmail.gmail@com"
     })
     void validateEmailFormat_IncorrectEmailFormat_ThrowsException(String email) {
-        IncorrectEmailFormatException exception = assertThrows(
+        final var exception = assertThrows(
                 IncorrectEmailFormatException.class,
                 () -> validator.validateEmailFormat(email)
         );
@@ -201,14 +201,14 @@ class UserRequestValidatorTest {
 
     @Test
     void validateEmailFormat_CorrectEmailFormat_DoesNotThrowException() {
-        String email = "newEmail@gmail.com";
+        final var email = "newEmail@gmail.com";
 
         assertDoesNotThrow(() -> validator.validateEmailFormat(email));
     }
 
     @Test
     void validateEmailFormat_Null_ThrowsException() {
-        IncorrectEmailFormatException exception = assertThrows(
+        final var exception = assertThrows(
                 IncorrectEmailFormatException.class,
                 () -> validator.validateEmailFormat(null)
         );
@@ -219,12 +219,12 @@ class UserRequestValidatorTest {
     /* Tests for validateEmail*/
     @Test
     void validateEmail_UserWithSameEmailAlreadyExist_ThrowsException() {
-        var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
+        final var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
 
         when(userRepository.findByEmail(requestDTO.getEmail()))
                 .thenReturn(Optional.of(new User("Tomas", "tomas123", "email@email.com")));
 
-        EmailAlreadyExistException exception = assertThrows(
+        final var exception = assertThrows(
                 EmailAlreadyExistException.class,
                 () -> validator.validateEmail(requestDTO)
         );
@@ -235,7 +235,7 @@ class UserRequestValidatorTest {
 
     @Test
     void validateEmail_UserWithProvidedEmailDoesNotExist_DoesNotThrowException() {
-        var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
+        final var requestDTO = new UserRequestDTO("Andrius", "password", "email@email.com");
 
         when(userRepository.findByEmail(requestDTO.getEmail()))
                 .thenReturn(Optional.empty());

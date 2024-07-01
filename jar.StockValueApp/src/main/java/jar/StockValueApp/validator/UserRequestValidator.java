@@ -20,39 +20,37 @@ public class UserRequestValidator {
 
     private final UserRepository userRepository;
 
-    public void validateUserRequest(final UserRequestDTO userRequestDTO) throws MandatoryFieldsMissingException {
+    public void validateUserRequest(final UserRequestDTO userRequestDTO) {
         if (userRequestDTO == null) {
-            log.error("Request was empty.");
-            throw new MandatoryFieldsMissingException("Request was empty.");
-        } else if (userRequestDTO.getUserName() == null) {
-            log.error("Mandatory user name field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory user name field is missing.");
-        } else if (userRequestDTO.getUserName().isBlank()) {
-            log.error("Mandatory user name field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory user name field is empty.");
-        } else if (userRequestDTO.getPassword() == null) {
-            log.error("Mandatory password field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory password field is missing.");
-        } else if (userRequestDTO.getPassword().isBlank()) {
-            log.error("Mandatory password field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory password field is empty.");
-        } else if (userRequestDTO.getEmail() == null) {
-            log.error("Mandatory email field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory email field is missing.");
-        } else if (userRequestDTO.getEmail().isBlank()) {
-            log.error("Mandatory email field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory email field is empty.");
+            logAndThrow("Request was empty.");
+        }
+
+        checkMandatoryField(userRequestDTO.getUserName(), "user name");
+        checkMandatoryField(userRequestDTO.getPassword(), "password");
+        checkMandatoryField(userRequestDTO.getEmail(), "email");
+    }
+
+    private void checkMandatoryField(Object field, String fieldName) {
+        if (field == null) {
+            logAndThrow("Mandatory " + fieldName + " field is missing.");
+        } else if (field instanceof String && ((String) field).isBlank()) {
+            logAndThrow("Mandatory " + fieldName + " field is empty.");
         }
     }
 
-    public void validateUserList(final List<User> users) throws NoUsersFoundException {
+    private void logAndThrow(String message) {
+        log.error(message);
+        throw new MandatoryFieldsMissingException(message);
+    }
+
+    public void validateUserList(final List<User> users) {
         if (users.isEmpty()) {
             log.error("No users were found in the DB!");
             throw new NoUsersFoundException("No users were found!");
         }
     }
 
-    public void validateUserById(final Long id) throws NoUsersFoundException {
+    public void validateUserById(final Long id) {
         if (!userRepository.existsById(id)) {
             log.error("User with id number " + id + " not found.");
             throw new NoUsersFoundException("User with id number " + id + " not found.");
@@ -60,8 +58,8 @@ public class UserRequestValidator {
     }
 
     // Checks if the provided users username already exists in the system.
-    public void validateUserName(final UserRequestDTO userRequestDTO) throws UserAlreadyExistException {
-        final Optional<User> user = userRepository.findByUserName(userRequestDTO.getUserName());
+    public void validateUserName(final UserRequestDTO userRequestDTO) {
+        final var user = userRepository.findByUserName(userRequestDTO.getUserName());
 
         if (user.isPresent()) {
             log.error("User with username: " + userRequestDTO.getUserName() +
@@ -71,9 +69,9 @@ public class UserRequestValidator {
         }
     }
 
-    public void validateEmailFormat(final String email) throws IncorrectEmailFormatException {
-        final String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        final Pattern emailPattern = Pattern.compile(emailRegex);
+    public void validateEmailFormat(final String email) {
+        final var emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        final var emailPattern = Pattern.compile(emailRegex);
 
         if (email == null || !emailPattern.matcher(email).matches()) {
             log.error("Invalid email address format: " + email);
@@ -81,8 +79,8 @@ public class UserRequestValidator {
         }
     }
 
-    public void validateEmail(final UserRequestDTO userRequestDTO) throws EmailAlreadyExistException {
-        if (userRepository.findByEmail(userRequestDTO.getEmail()).isPresent()){
+    public void validateEmail(final UserRequestDTO userRequestDTO) {
+        if (userRepository.findByEmail(userRequestDTO.getEmail()).isPresent()) {
             log.error("User with email address " + userRequestDTO.getEmail() + " already exist.");
             throw new EmailAlreadyExistException("User with email address " + userRequestDTO.getEmail() + " already exist.");
         }
