@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="removing .idea file" />
+    <list default="true" id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="First adjustment of the code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -218,12 +218,36 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/copy" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="28.05.24" />
     <MESSAGE value="31.05.24" />
     <MESSAGE value="01.07.2024" />
     <MESSAGE value="removing .idea file" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing .idea file" />
+    <MESSAGE value="First adjustment of the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="First adjustment of the code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
