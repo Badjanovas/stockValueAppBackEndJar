@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="removing .idea file" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2gp7r9qeCHPYQB6cw1kA9d74csH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Geimantronas/Desktop/AWS related stuff/aws code&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\test\java\jar\StockValueApp\validator" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\main\java\jar\StockValueApp\validator" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\main\java\jar\StockValueApp\service\mappingService" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\main\java\jar\StockValueApp\service" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\main\java\jar\StockValueApp\repository" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\main\resources\features" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp" />
+      <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="jar.StockValueApp.service.calculationService" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="jar.StockValueApp.config" />
+      <recent name="jar.StockValueApp.util" />
+      <recent name="jar.StockValueApp.dto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DcfRequestValidatorTest">
+    <configuration name="jar.StockValueApp" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="Email" value="abadjanovas@gmail.com" />
+        <env name="Password" value="boce hszw lgmv rbry" />
+        <env name="postgresPassword" value="bambeklis258" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.Application" />
+      <module name="jar.StockValueApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DcfModelCalculationServiceTest.validateCalculationOfSumOfDiscountedFCF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jar.StockValueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jar.StockValueApp.service.calculationService.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jar.StockValueApp.service.calculationService" />
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.service.calculationService.DcfModelCalculationServiceTest" />
+      <option name="METHOD_NAME" value="validateCalculationOfSumOfDiscountedFCF" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DcfRequestValidatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jar.StockValueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jar.StockValueApp.validator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jar.StockValueApp.validator" />
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.validator.DcfRequestValidatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DividendDiscountCalculationServiceTest.validateCalculationOfDividendDiscountValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jar.StockValueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jar.StockValueApp.service.calculationService.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jar.StockValueApp.service.calculationService" />
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.service.calculationService.DividendDiscountCalculationServiceTest" />
+      <option name="METHOD_NAME" value="validateCalculationOfDividendDiscountValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DividendDiscountCalculationServiceTest.validateCalculationOfDividendDiscountValue_Returns_63_6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jar.StockValueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jar.StockValueApp.service.calculationService.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jar.StockValueApp.service.calculationService" />
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.service.calculationService.DividendDiscountCalculationServiceTest" />
+      <option name="METHOD_NAME" value="validateCalculationOfDividendDiscountValue_Returns_63_6" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DividendDiscountCalculationServiceTest.validateCalculationOfNextYearsDiv" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jar.StockValueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jar.StockValueApp.service.calculationService.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jar.StockValueApp.service.calculationService" />
+      <option name="MAIN_CLASS_NAME" value="jar.StockValueApp.service.calculationService.DividendDiscountCalculationServiceTest" />
+      <option name="METHOD_NAME" value="validateCalculationOfNextYearsDiv" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DcfRequestValidatorTest" />
+        <item itemvalue="JUnit.DcfModelCalculationServiceTest.validateCalculationOfSumOfDiscountedFCF" />
+        <item itemvalue="JUnit.DividendDiscountCalculationServiceTest.validateCalculationOfNextYearsDiv" />
+        <item itemvalue="JUnit.DividendDiscountCalculationServiceTest.validateCalculationOfDividendDiscountValue_Returns_63_6" />
+        <item itemvalue="JUnit.DividendDiscountCalculationServiceTest.validateCalculationOfDividendDiscountValue" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="" />
+      <created>1716382861479</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716382861479</updated>
+    </task>
+    <task id="LOCAL-00001" summary="28.05.24">
+      <option name="closed" value="true" />
+      <created>1716904794026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716904794026</updated>
+    </task>
+    <task id="LOCAL-00002" summary="31.05.24">
+      <option name="closed" value="true" />
+      <created>1717160158106</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717160158106</updated>
+    </task>
+    <task id="LOCAL-00003" summary="01.07.2024">
+      <option name="closed" value="true" />
+      <created>1719826685836</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719826685836</updated>
+    </task>
+    <task id="LOCAL-00004" summary="removing .idea file">
+      <option name="closed" value="true" />
+      <created>1719826968117</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719826968117</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="28.05.24" />
+    <MESSAGE value="31.05.24" />
+    <MESSAGE value="01.07.2024" />
+    <MESSAGE value="removing .idea file" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing .idea file" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
