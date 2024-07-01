@@ -3,9 +3,7 @@ package jar.StockValueApp.service;
 
 import jar.StockValueApp.dto.DcfModelRequestDTO;
 import jar.StockValueApp.dto.DcfModelResponseDTO;
-import jar.StockValueApp.exception.*;
 import jar.StockValueApp.model.DcfModel;
-import jar.StockValueApp.model.User;
 import jar.StockValueApp.repository.DcfModelRepository;
 import jar.StockValueApp.repository.UserRepository;
 import jar.StockValueApp.service.calculationService.MathService;
@@ -19,6 +17,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +37,8 @@ public class DcfModelService {
     private final MathService mathService;
 
     @Cacheable(value = "dcfValuationsCache")
-    public List<DcfModel> getAllDcfValuations() throws NoDcfValuationsFoundException {
-        final List<DcfModel> dcfValuations = dcfModelRepository.findAll();
+    public List<DcfModel> getAllDcfValuations() {
+        final var dcfValuations = dcfModelRepository.findAll();
         dcfRequestValidator.validateDcfModelList(dcfValuations);
 
         log.info(dcfValuations.size() + " Grahams valuations were found in DB.");
@@ -46,13 +46,12 @@ public class DcfModelService {
     }
 
     @Cacheable(value = "dcfValuationsByTickerCache", key = "#ticker.concat('-').concat(#userId.toString())")
-    public List<DcfModelResponseDTO> getDcfValuationsByTicker(final String ticker, final Long userId)
-            throws NoDcfValuationsFoundException, NotValidIdException, NoUsersFoundException {
+    public ArrayList<Object> getDcfValuationsByTicker(final String ticker, final Long userId) {
         globalExceptionValidator.validateId(userId);
         userRequestValidator.validateUserById(userId);
-        final List<DcfModel> companiesValuations = dcfModelRepository.findByUserId(userId);
+        final var companiesValuations = dcfModelRepository.findByUserId(userId);
 
-        final List<DcfModel> filteredCompaniesByTicker = companiesValuations.stream()
+        final var filteredCompaniesByTicker = companiesValuations.stream()
                 .filter(valuation -> valuation.getTicker().equalsIgnoreCase(ticker))
                 .collect(Collectors.toList());
 
@@ -65,13 +64,12 @@ public class DcfModelService {
     }
 
     @Cacheable(value = "dcfValuationsByCompanyNameCache", key = "#companyName.concat('-').concat(#userId.toString())")
-    public List<DcfModelResponseDTO> getDcfValuationsByCompanyName(final String companyName, final Long userId)
-            throws NoDcfValuationsFoundException, NotValidIdException, NoUsersFoundException {
+    public ArrayList<Object> getDcfValuationsByCompanyName(final String companyName, final Long userId) {
         globalExceptionValidator.validateId(userId);
         userRequestValidator.validateUserById(userId);
-        final List<DcfModel> companiesValuations = dcfModelRepository.findByUserId(userId);
+        final var companiesValuations = dcfModelRepository.findByUserId(userId);
 
-        final List<DcfModel> filteredCompaniesByCompanyName = companiesValuations.stream()
+        final var filteredCompaniesByCompanyName = companiesValuations.stream()
                 .filter(valuation -> valuation.getCompanyName().equalsIgnoreCase(companyName))
                 .collect(Collectors.toList());
 
@@ -87,16 +85,16 @@ public class DcfModelService {
             value = "dcfValuationByDateRangeCache",
             key = "#startDate.toString().concat('-').concat(#endDate.toString()).concat('-').concat(#userId.toString())"
     )
-    public List<DcfModelResponseDTO> getDcfValuationByDate(
+    public ArrayList<Object> getDcfValuationByDate(
             final LocalDate startDate,
             final LocalDate endDate,
             final Long userId
-    ) throws NoGrahamsModelFoundException, NotValidIdException, NoUsersFoundException {
+    ){
         globalExceptionValidator.validateId(userId);
         userRequestValidator.validateUserById(userId);
-        final List<DcfModel> valuations = dcfModelRepository.findByUserId(userId);
+        final var valuations = dcfModelRepository.findByUserId(userId);
 
-        final List<DcfModel> filteredValuationsByDate = valuations.stream()
+        final var filteredValuationsByDate = valuations.stream()
                 .filter(valuation ->
                         valuation.getCreationDate().isAfter(startDate.minusDays(1)) &&
                                 valuation.getCreationDate().isBefore(endDate.plusDays(1)))
@@ -109,14 +107,13 @@ public class DcfModelService {
         return dcfModelMappingService.mapToResponse(filteredValuationsByDate);
     }
 
-    public DcfModelResponseDTO addDcfValuation(final DcfModelRequestDTO dcfModelRequestDTO, final Long userId)
-            throws MandatoryFieldsMissingException, NotValidIdException, NoUsersFoundException {
+    public DcfModelResponseDTO addDcfValuation(final DcfModelRequestDTO dcfModelRequestDTO, final Long userId) {
         globalExceptionValidator.validateId(userId);
         userRequestValidator.validateUserById(userId);
         dcfRequestValidator.validateDcfModelRequest(dcfModelRequestDTO);
-        final User user = userRepository.getReferenceById(userId);
+        final var user = userRepository.getReferenceById(userId);
 
-        final DcfModel dcfModel = dcfModelMappingService.mapToEntity(dcfModelRequestDTO);
+        final var dcfModel = dcfModelMappingService.mapToEntity(dcfModelRequestDTO);
         user.getDcfModels().add(dcfModel);
         dcfModel.setUser(user);
 
@@ -125,8 +122,8 @@ public class DcfModelService {
         log.info("Calculation created successfully.");
         return dcfModelMappingService.mapToResponse(dcfModel);
     }
-    public void deleteDcfValuationById(final Long valuationId, final Long userId)
-            throws NotValidIdException, NoDcfValuationsFoundException, ValuationDoestExistForSelectedUserException {
+
+    public HashMap<Object, Object> deleteDcfValuationById(final Long valuationId, final Long userId) {
         globalExceptionValidator.validateId(valuationId);
         globalExceptionValidator.validateId(userId);
         dcfRequestValidator.validateDcfModelById(valuationId);
@@ -135,5 +132,13 @@ public class DcfModelService {
         cacheService.evictAllDcfValuationsCaches();
         dcfModelRepository.deleteById(valuationId);
         log.info("Discounted cash flow valuation  with id number " + valuationId + " was deleted from DB successfully.");
+
+        return createDeletionResponse(valuationId);
+    }
+
+    private HashMap<Object, Object> createDeletionResponse(Long valuationId){
+        var response = new HashMap<>();
+        response.put("message", "Discounted cash flow valuation with id number " + valuationId + " was deleted from DB successfully.");
+        return response;
     }
 }

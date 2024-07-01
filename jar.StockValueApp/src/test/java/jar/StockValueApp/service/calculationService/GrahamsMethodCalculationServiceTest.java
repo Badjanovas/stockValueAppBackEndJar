@@ -19,7 +19,7 @@ class GrahamsMethodCalculationServiceTest {
 
     @Test
     void validateGrahamsCalculation_Returns_46_68(){
-        GrahamsRequestDTO requestDTO = new GrahamsRequestDTO(
+        final var requestDTO = new GrahamsRequestDTO(
                 "test",
                 "test",
                 4.5,
@@ -27,7 +27,7 @@ class GrahamsMethodCalculationServiceTest {
                 5.09
         );
 
-        double result = service.calculateGrahamsValuation(requestDTO);
+        final var result = service.calculateGrahamsValuation(requestDTO);
         assertEquals(46.68, result);
     }
 

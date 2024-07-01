@@ -27,19 +27,17 @@ public class DcfModelController {
     private final DcfModelService dcfModelService;
 
     @GetMapping("/")
-    public ResponseEntity<?> findAll() throws NoDcfValuationsFoundException {
+    public ResponseEntity<?> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(dcfModelService.getAllDcfValuations());
     }
 
     @GetMapping("/ticker/{ticker}/{userId}")
-    public ResponseEntity<?> findByTicker(@PathVariable final String ticker, @PathVariable final Long userId)
-            throws NoDcfValuationsFoundException, NotValidIdException, NoUsersFoundException {
+    public ResponseEntity<?> findByTicker(@PathVariable final String ticker, @PathVariable final Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(dcfModelService.getDcfValuationsByTicker(ticker, userId));
     }
 
     @GetMapping("/companyName/{companyName}/{userId}")
-    public ResponseEntity<?> findByCompanyNAme(@PathVariable final String companyName, @PathVariable final Long userId)
-            throws NoDcfValuationsFoundException, NotValidIdException, NoUsersFoundException {
+    public ResponseEntity<?> findByCompanyNAme(@PathVariable final String companyName, @PathVariable final Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(dcfModelService.getDcfValuationsByCompanyName(companyName, userId));
     }
 
@@ -48,7 +46,7 @@ public class DcfModelController {
             @PathVariable("startDate") final LocalDate startDate,
             @PathVariable("endDate") final LocalDate endDate,
             @PathVariable final Long userId
-    ) throws NoGrahamsModelFoundException, NotValidIdException, NoUsersFoundException {
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(dcfModelService.getDcfValuationByDate(startDate, endDate, userId));
     }
 
@@ -56,7 +54,7 @@ public class DcfModelController {
     public ResponseEntity<?> addDcfValuation(
             @RequestBody final DcfModelRequestDTO dcfModelRequestDTO,
             @PathVariable final Long userId
-    ) throws MandatoryFieldsMissingException, NotValidIdException, NoUsersFoundException {
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(dcfModelService.addDcfValuation(dcfModelRequestDTO, userId));
     }
 
@@ -64,10 +62,8 @@ public class DcfModelController {
     public ResponseEntity<?> deleteDcfValuationById(
             @PathVariable final Long dcfValuationId,
             @PathVariable final Long userId
-    ) throws NotValidIdException, NoDcfValuationsFoundException, ValuationDoestExistForSelectedUserException {
-        dcfModelService.deleteDcfValuationById(dcfValuationId, userId);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Discounted cash flow valuation with id number " + dcfValuationId + " was deleted from DB successfully.");
+    ) {
+        var response = dcfModelService.deleteDcfValuationById(dcfValuationId, userId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

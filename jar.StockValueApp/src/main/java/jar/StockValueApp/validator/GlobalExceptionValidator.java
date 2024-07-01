@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class GlobalExceptionValidator {
 
-    public void validateId(final Long id) throws NotValidIdException {
-        if (id == null || id <=0){
+    public void validateId(final Long id) {
+        if (id == null || id <= 0) {
             log.error("Invalid id.");
             throw new NotValidIdException("Invalid id.");
         }

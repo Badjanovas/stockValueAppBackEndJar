@@ -1,0 +1,11 @@
+email:
+  template: |
+    Hello {userName},
+    
+    Welcome aboard and thank you for choosing Stock Value App! We're excited to have you join our community of savvy investors.
+    
+    Should you need any assistance or have any questions, feel free to reach out to us – we're here to help!
+    
+    Happy investing,
+    
+    The Stock Value App Team

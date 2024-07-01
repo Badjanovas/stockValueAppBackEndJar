@@ -24,7 +24,7 @@ public class JwtService {
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
-        final Claims claims = extractAllClaim(token);
+        final var claims = extractAllClaim(token);
         return claimsResolver.apply(claims);
     }
 
@@ -44,7 +44,7 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){
-        final String username = extractUsername(token);
+        final var username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
@@ -67,7 +67,7 @@ public class JwtService {
 
 
     public Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
+        var keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
         System.out.println("Key length in bits: " + (keyBytes.length * 8));
         return Keys.hmacShaKeyFor(keyBytes);
     }

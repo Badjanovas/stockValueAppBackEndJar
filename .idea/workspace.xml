@@ -4,7 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="removing .idea file" />
+    <list default="true" id="8c9d7e78-15fc-43c9-9ae2-903d21487382" name="Changes" comment="removing .idea file">
+      <change afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/config/EmailConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/config/EmailProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/config/YamlPropertySourceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/resources/emailGreeting.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/DcfModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/DcfModelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/DividendDiscountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/DividendDiscountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/GrahamsModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/GrahamsModelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/EmailAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/EmailAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/IncorrectCompaniesExpectedGrowthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/IncorrectCompaniesExpectedGrowthException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/IncorrectEmailFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/IncorrectEmailFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/MandatoryFieldsMissingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/MandatoryFieldsMissingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoDcfValuationsFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoDcfValuationsFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoDividendDiscountModelFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoDividendDiscountModelFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoGrahamsModelFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoGrahamsModelFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoUsersFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NoUsersFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NotValidIdException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/NotValidIdException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/UserAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/UserAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/ValuationDoestExistForSelectedUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/exception/ValuationDoestExistForSelectedUserException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/DcfModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/DcfModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/DividendDiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/DividendDiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/EmailSendingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/GrahamsModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/GrahamsModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/calculationService/DcfModelCalculationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/calculationService/DcfModelCalculationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/DcfModelMappingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/DcfModelMappingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/DividendDiscountMappingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/DividendDiscountMappingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/GrahamsModelMappingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/GrahamsModelMappingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/UserMappingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/service/mappingService/UserMappingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/util/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/util/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/AuthenticationRequestValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/AuthenticationRequestValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/DcfRequestValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/DcfRequestValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/DividendDiscountRequestValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/DividendDiscountRequestValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/GlobalExceptionValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/GlobalExceptionValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/GrahamsModelRequestValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/GrahamsModelRequestValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/UserRequestValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/main/java/jar/StockValueApp/validator/UserRequestValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/DcfModelCalculationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/DcfModelCalculationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/DividendDiscountCalculationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/DividendDiscountCalculationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/GrahamsMethodCalculationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/GrahamsMethodCalculationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/MathServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/service/calculationService/MathServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/DcfRequestValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/DcfRequestValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/DividendDiscountRequestValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/DividendDiscountRequestValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/GlobalExceptionValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/GlobalExceptionValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/GrahamsModelRequestValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/GrahamsModelRequestValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/UserRequestValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jar.StockValueApp/src/test/java/jar/StockValueApp/validator/UserRequestValidatorTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +65,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,17 +85,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Geimantronas/Desktop/AWS related stuff/aws code&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Geimantronas/Desktop/AWS related stuff/aws code",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Geimantronas\Downloads\jar.StockValueApp\jar.StockValueApp\src\test\java\jar\StockValueApp\validator" />
@@ -215,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719826968117</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="removing .idea file">
+      <option name="closed" value="true" />
+      <created>1719827076065</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719827076065</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

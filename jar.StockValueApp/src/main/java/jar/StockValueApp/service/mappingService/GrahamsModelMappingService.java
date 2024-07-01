@@ -28,8 +28,8 @@ public class GrahamsModelMappingService {
                 .build();
     }
 
-    public List<GrahamsResponseDTO> mapToResponse(final List<GrahamsModel> grahamModelValuations) {
-        List<GrahamsResponseDTO> mappedGrahamValuations = new ArrayList<>();
+    public ArrayList<Object> mapToResponse(final List<GrahamsModel> grahamModelValuations) {
+        final var mappedGrahamValuations = new ArrayList<>();
         for (GrahamsModel grahamsValuation : grahamModelValuations) {
             GrahamsResponseDTO dto = GrahamsResponseDTO.builder()
                     .id(grahamsValuation.getId())

@@ -12,23 +12,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationRequestValidator {
 
-    public void validateAuthenticationRequest(AuthenticationRequest request) throws MandatoryFieldsMissingException {
-        if (request == null){
-            log.error("Request was empty.");
-            throw new MandatoryFieldsMissingException("Request was empty.");
-        } else if (request.getUserName() == null ) {
-            log.error("Mandatory user name field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory user name field is missing.");
-        } else if (request.getUserName().isBlank()) {
-            log.error("Mandatory user name field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory user name field is empty.");
-        } else if (request.getPassword() == null) {
-            log.error("Mandatory password field is missing.");
-            throw new MandatoryFieldsMissingException("Mandatory password field is missing.");
-        } else if (request.getPassword().isBlank()) {
-            log.error("Mandatory password field is empty.");
-            throw new MandatoryFieldsMissingException("Mandatory password field is empty.");
+    public void validateAuthenticationRequest(AuthenticationRequest request) {
+        if (request == null) {
+            logAndThrow("Request was empty.");
         }
+
+        checkMandatoryField(request.getUserName(), "user name");
+        checkMandatoryField(request.getPassword(), "password");
+    }
+
+    private void checkMandatoryField(Object field, String fieldName) {
+        if (field == null) {
+            logAndThrow("Mandatory " + fieldName + " field is missing.");
+        } else if (field instanceof String && ((String) field).isBlank()) {
+            logAndThrow("Mandatory " + fieldName + " field is empty.");
+        }
+    }
+
+    private void logAndThrow(String message) {
+        log.error(message);
+        throw new MandatoryFieldsMissingException(message);
     }
 
 }

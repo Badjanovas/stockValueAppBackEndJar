@@ -36,7 +36,7 @@ class DividendDiscountRequestValidatorTest {
     /* Tests for validateDividendDiscountRequest */
     @Test
     void validateDividendDiscountRequest_NullRequest_ThrowsException() {
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest(null)
         );
@@ -45,7 +45,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_CompanyNameNull_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 null,
                 "ticker",
                 1.1,
@@ -53,7 +53,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -63,7 +63,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_CompanyNameIsBlank_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "",
                 "ticker",
                 1.1,
@@ -71,7 +71,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -81,7 +81,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_CompanyTickerNull_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "company",
                 null,
                 1.1,
@@ -89,7 +89,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -100,7 +100,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_CompanyTickerIsBlank_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "company",
                 "",
                 1.1,
@@ -108,7 +108,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -118,7 +118,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_CurrentYearsDivIsMissing_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "company",
                 "ticker",
                 null,
@@ -126,7 +126,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -136,7 +136,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_WaccFieldIsMissing_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "company",
                 "ticker",
                 1.1,
@@ -144,7 +144,7 @@ class DividendDiscountRequestValidatorTest {
                 1.1
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -154,7 +154,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountRequest_ExpectedGrowthRateIsMissing_ThrowsException() {
-        var requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "company",
                 "ticker",
                 1.1,
@@ -162,7 +162,7 @@ class DividendDiscountRequestValidatorTest {
                 null
         );
 
-        MandatoryFieldsMissingException exception = assertThrows(
+        final var exception = assertThrows(
                 MandatoryFieldsMissingException.class,
                 () -> validator.validateDividendDiscountRequest
                         (requestDTO)
@@ -174,7 +174,7 @@ class DividendDiscountRequestValidatorTest {
     /* Tests for validateDividendDiscountList */
     @Test
     void validateDividendDiscountList_EmptyList_ThrowsException() {
-        List<DividendDiscountModel> valuations = new ArrayList<>();
+        final List<DividendDiscountModel> valuations = new ArrayList<>();
 
         NoDividendDiscountModelFoundException exception = assertThrows(
                 NoDividendDiscountModelFoundException.class,
@@ -186,7 +186,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountList_PopulatedList_DoesNotThrowException() {
-        List<DividendDiscountModel> valuations = new ArrayList<>();
+        final List<DividendDiscountModel> valuations = new ArrayList<>();
         valuations.add(new DividendDiscountModel());
         valuations.add(new DividendDiscountModel());
         valuations.add(new DividendDiscountModel());
@@ -197,10 +197,10 @@ class DividendDiscountRequestValidatorTest {
     /* Tests for validateDividendDiscountById */
     @Test
     void validateDividendDiscountById_DoesNotExist_ThrowsException() {
-        Long valuationId = 1L;
+        final var valuationId = 1L;
         when(dividendDiscountRepository.existsById(valuationId)).thenReturn(false);
 
-        NoDividendDiscountModelFoundException exception = assertThrows(
+        final var exception = assertThrows(
                 NoDividendDiscountModelFoundException.class,
                 () -> validator.validateDividendDiscountById(valuationId)
         );
@@ -212,7 +212,7 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountById_DoesExist_DoesNotThrowException() {
-        Long valuationId = 1L;
+        final var valuationId = 1L;
         when(dividendDiscountRepository.existsById(valuationId)).thenReturn(true);
 
         assertDoesNotThrow(() -> validator.validateDividendDiscountById(valuationId));
@@ -221,10 +221,10 @@ class DividendDiscountRequestValidatorTest {
     /* Tests for validateExpectedGrowthRateInput */
     @Test
     void validateExpectedGrowthRateInput_ExpectedGrowthHigherThenWacc_ThrowsException() {
-        final double wacc = 9.0;
-        final double expectedGrowth = 9.5;
+        final var wacc = 9.0;
+        final var expectedGrowth = 9.5;
 
-        IncorrectCompaniesExpectedGrowthException exception = assertThrows(
+        final var exception = assertThrows(
                 IncorrectCompaniesExpectedGrowthException.class,
                 () -> validator.validateExpectedGrowthRateInput(wacc, expectedGrowth)
         );
@@ -236,10 +236,10 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateExpectedGrowthRateInput_ExpectedGrowthEqualToWacc_ThrowsException() {
-        final double wacc = 9.0;
-        final double expectedGrowth = 9.0;
+        final var wacc = 9.0;
+        final var expectedGrowth = 9.0;
 
-        IncorrectCompaniesExpectedGrowthException exception = assertThrows(
+        final var exception = assertThrows(
                 IncorrectCompaniesExpectedGrowthException.class,
                 () -> validator.validateExpectedGrowthRateInput(wacc, expectedGrowth)
         );
@@ -251,8 +251,8 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateExpectedGrowthRateInput_ExpectedGrowthLowerThanWacc_DoesNotThrowException() {
-        final double wacc = 9.0;
-        final double expectedGrowth = 7.5;
+        final var wacc = 9.0;
+        final var expectedGrowth = 7.5;
 
         assertDoesNotThrow(() -> validator.validateExpectedGrowthRateInput(wacc, expectedGrowth));
     }
@@ -260,9 +260,9 @@ class DividendDiscountRequestValidatorTest {
     /* Tests for validateDividendDiscountModelForUser */
     @Test
     void validateDividendDiscountModelForUser_ExistsAndBelongsToUser_NoExceptionThrown() {
-        final Long valuationId = 1L;
-        final Long userId = 1L;
-        var user = new User(
+        final var valuationId = 1L;
+        final var userId = 1L;
+        final var user = new User(
                 1L,
                 "Andrius",
                 "password",
@@ -273,7 +273,7 @@ class DividendDiscountRequestValidatorTest {
                 new ArrayList<>()
         );
 
-        var dividendDiscountModel = new DividendDiscountModel(
+        final var dividendDiscountModel = new DividendDiscountModel(
                 1L,
                 "Apple",
                 "AAPL",
@@ -294,12 +294,12 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountModelForUser_ValuationDoesNotExist_ThrowsException() {
-        final Long valuationId = 1L;
-        final Long userId = 1L;
+        final var valuationId = 1L;
+        final var userId = 1L;
         when(dividendDiscountRepository.findById(valuationId))
                 .thenReturn(Optional.empty());
 
-        ValuationDoestExistForSelectedUserException exception = assertThrows(
+        final var exception = assertThrows(
                 ValuationDoestExistForSelectedUserException.class,
                 () -> validator.validateDividendDiscountModelForUser(valuationId, userId)
         );
@@ -309,9 +309,9 @@ class DividendDiscountRequestValidatorTest {
 
     @Test
     void validateDividendDiscountModelForUser_ValuationExistsButBelongsToAnotherUser_ThrowsException() {
-        final Long valuationId = 1L;
-        final Long userId = 2L;
-        var user = new User(
+        final var valuationId = 1L;
+        final var userId = 2L;
+        final var user = new User(
                 1L,
                 "Andrius",
                 "password",
@@ -322,7 +322,7 @@ class DividendDiscountRequestValidatorTest {
                 new ArrayList<>()
         );
 
-        var dividendDiscountModel = new DividendDiscountModel(
+        final var dividendDiscountModel = new DividendDiscountModel(
                 1L,
                 "Apple",
                 "AAPL",
@@ -338,7 +338,7 @@ class DividendDiscountRequestValidatorTest {
         when(dividendDiscountRepository.findById(valuationId))
                 .thenReturn(Optional.of(dividendDiscountModel));
 
-        ValuationDoestExistForSelectedUserException exception = assertThrows(
+        final var exception = assertThrows(
                 ValuationDoestExistForSelectedUserException.class,
                 () -> validator.validateDividendDiscountModelForUser(valuationId, userId)
         );

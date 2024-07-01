@@ -33,8 +33,8 @@ public class DividendDiscountMappingService {
                 .build();
     }
 
-    public List<DividendDiscountResponseDTO> mapToResponse(List<DividendDiscountModel> dividendDiscountValuations) {
-        final List<DividendDiscountResponseDTO> mappedDividendValuations = new ArrayList<>();
+    public ArrayList<Object> mapToResponse(List<DividendDiscountModel> dividendDiscountValuations) {
+        final var mappedDividendValuations = new ArrayList<>();
         for (DividendDiscountModel valuation : dividendDiscountValuations) {
             DividendDiscountResponseDTO dto = DividendDiscountResponseDTO.builder()
                     .id(valuation.getId())

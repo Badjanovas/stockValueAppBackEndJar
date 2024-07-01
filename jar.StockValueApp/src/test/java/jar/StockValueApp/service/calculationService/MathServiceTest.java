@@ -18,13 +18,13 @@ class MathServiceTest {
 
     @Test
     void validateConvertToPercentages_Returns_1(){
-       double result = mathService.convertToPercentages(100);
+        final var result = mathService.convertToPercentages(100);
        assertEquals(1.0, result);
     }
 
     @Test
     void validateRoundToTwoDecimals_ReturnsNumberWithTwoDecimals(){
-        double result = mathService.roundToTwoDecimal(5.5555);
+        final var result = mathService.roundToTwoDecimal(5.5555);
         assertEquals(5.56, result);
     }
 

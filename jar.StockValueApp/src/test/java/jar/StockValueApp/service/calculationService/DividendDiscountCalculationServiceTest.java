@@ -18,7 +18,7 @@ class DividendDiscountCalculationServiceTest {
 
     @Test
     void validateCalculationOfDividendDiscountValue_Returns_63_6() {
-        DividendDiscountRequestDTO requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "test",
                 "test",
                 1.5,
@@ -26,20 +26,20 @@ class DividendDiscountCalculationServiceTest {
                 6.0
         );
 
-        double result = service.calculateDividendDiscountValue(requestDTO);
+        final var result = service.calculateDividendDiscountValue(requestDTO);
         assertEquals(63.6, result);
     }
 
     @Test
     void validateCalculationOfNextYearsDiv() {
-        DividendDiscountRequestDTO requestDTO = new DividendDiscountRequestDTO(
+        final var requestDTO = new DividendDiscountRequestDTO(
                 "test",
                 "test",
                 1.5,
                 8.5,
                 6.0
         );
-        double result = service.calculateValueOfNextYearsDiv(requestDTO);
+        final var result = service.calculateValueOfNextYearsDiv(requestDTO);
         assertEquals(1.59, result);
     }
 }
